@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;1,700&display=swap');
+
+.App {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.logo-webpack {
+    width: 200px;
+    background-color: black;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.txt-desc {
+    font-size: 1.1em;
+}
