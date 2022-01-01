@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -7,6 +8,12 @@ module.exports = {
     path: path.join(__dirname, "public"),
     clean: true,
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "React Webpack Setup",
+      template: path.resolve(__dirname, "src/template", "index.html"),
+    }),
+  ],
   module: {
     rules: [
       {
@@ -33,6 +40,7 @@ module.exports = {
   devtool: "inline-source-map",
   devServer: {
     // open: true,  open's a new tab on browser which runs localhost
+    static: "./public",
     client: {
       reconnect: 3,
       overlay: {
