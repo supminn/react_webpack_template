@@ -2,12 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: path.join(__dirname, "src", "index.js"),
   output: {
-    filename: "bundle.js",
+    filename: "[name].[contenthash].bundle.js",
     path: path.join(__dirname, "public"),
     clean: true,
   },
+  mode: "production",
   plugins: [
     new HtmlWebpackPlugin({
       title: "React Webpack Setup",
@@ -36,7 +37,6 @@ module.exports = {
       },
     ],
   },
-  mode: "production",
   devtool: "inline-source-map",
   devServer: {
     // open: true,  open's a new tab on browser which runs localhost
@@ -46,6 +46,18 @@ module.exports = {
       overlay: {
         errors: true,
         warnings: false,
+      },
+    },
+  },
+  optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
       },
     },
   },
